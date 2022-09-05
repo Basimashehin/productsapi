@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator,MaxValueValidator
-from datetime import date
+from datetime import date,timedelta
 # Create your models here.
 class Products(models.Model):
     p_name=models.CharField(max_length=120)
@@ -48,6 +48,7 @@ class Orders(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     product=models.ForeignKey(Products,on_delete=models.CASCADE)
     date=models.DateField(auto_now_add=True)
+
     options=(
         ("order_placed","order_placed"),
         ("ready_to_ship","ready_to_ship"),
@@ -55,5 +56,5 @@ class Orders(models.Model):
         ("delivered","delivered")
     )
     status=models.CharField(max_length=20,choices=options,default="order_placed")
-    # edd=date.
+    # edd=date.today()+timedelta(days=5)
     expected_delivery_date=models.DateField(null=True)
