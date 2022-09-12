@@ -47,7 +47,7 @@ class Carts(models.Model):
 class Orders(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     product=models.ForeignKey(Products,on_delete=models.CASCADE)
-    date=models.DateField(auto_now_add=True)
+    odate=models.DateField(auto_now_add=True)
 
     options=(
         ("order_placed","order_placed"),
@@ -56,5 +56,5 @@ class Orders(models.Model):
         ("delivered","delivered")
     )
     status=models.CharField(max_length=20,choices=options,default="order_placed")
-    # edd=date.today()+timedelta(days=5)
-    expected_delivery_date=models.DateField(null=True)
+    edd=date.today()+timedelta(days=5)
+    expected_delivery_date=models.DateField(null=True,default=edd)

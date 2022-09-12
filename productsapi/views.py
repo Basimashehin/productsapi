@@ -133,7 +133,7 @@ class ProductViewSetView(ViewSet):
 class ProductModelViewSetView(ModelViewSet):
     serializer_class = ProductModelSerializer
     queryset = Products.objects.all()
-    authentication_classes = [authentication.TokenAuthentication]
+    # authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     @action(methods=["get"],detail=True)
     def get_reviews(self,request,*args,**kwargs):
@@ -191,7 +191,7 @@ class UserModelViewSetView(ModelViewSet):
 class CartsView(ModelViewSet):
     serializer_class = CartsModelSerializer
     queryset = Carts.objects.all()
-    authentication_classes = [authentication.TokenAuthentication]
+    # authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self,request,*args,**kwargs):
